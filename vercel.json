@@ -1,11 +1,11 @@
 {
     "build": [{
-        "src": "map/wsig.py",
+        "src": "wsig.py",
         "use": "@vercel/python",
         "config":{ "maxLambdaSize": "15mb", "runtime": "python3.11.1"}
     }],
     "routes": [{
         "src":  "/.*",
-        "dest": "map/wsig.py"
+        "dest": "wsig.py"
     }]
 }
