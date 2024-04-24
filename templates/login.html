@@ -15,7 +15,7 @@
       <h1 class="wow fadeInUp" data-wow-delay=".3s">Login</h1>
       <ul class="breadcrumb-items wow fadeInUp" data-wow-delay=".5s">
         <li>
-          <a href="index.html"> Home </a>
+          <a href="{% url "index" %}"> Home </a>
         </li>
         <li>
           <i class="fal fa-minus"></i>
@@ -31,39 +31,43 @@
   <div class="container">
     <div class="contact-form-items">
       <div class="title text-center">
-        <h2>Let’s Get in Touch</h2>
+        <h2>Login</h2>
         <p>
-          Your email address will not be published. Required fields are marked *
+          {% if messages %}
+            <ul class="messages" >
+                {% for message in messages %}
+                    <li{% if message.tags %} {% endif %} style="color: #f35525;">{{ message }}</li>
+                {% endfor %}
+            </ul>
+          {% endif %}
         </p>
       </div>
-      <form action="contact.php" id="contact-form" method="POST">
+      <form action="" id="contact-form" method="post">
+        {% csrf_token %}
         <div class="row g-4">
           <div class="col-lg-6">
             <div class="form-clt">
               <input
                 type="text"
-                name="name"
-                id="name"
-                placeholder="Your Name*"
+                name="uname"
+                oninput="removeSpaces(this)"
+                id="uname"
+                placeholder="UserName*" required
               />
             </div>
           </div>
           <div class="col-lg-6">
             <div class="form-clt">
               <input
-                type="text"
-                name="email"
-                id="email"
-                placeholder="Your Email*"
+                type="password"
+                name="password"
+                oninput="removeSpaces(this)"
+                id="password"
+                placeholder="Password*" required
               />
             </div>
           </div>
-          <div class="col-lg-12">
-            <div class="form-clt">
-              <input type="text" name="text" id="text" placeholder="Website*" />
-            </div>
-          </div>
-          <div class="col-lg-12">
+          {% comment %} <div class="col-lg-12">
             <div class="form-clt">
               <textarea
                 name="message"
@@ -71,11 +75,18 @@
                 placeholder="Write Message*"
               ></textarea>
             </div>
-          </div>
+          </div> {% endcomment %}
           <div class="col-lg-7">
-            <button type="submit" class="theme-btn">SEND YOUR MEASSAGE</button>
+            <button type="submit" class="theme-btn">Login</button>&nbsp &nbsp
+            -New to TrashTrack?<a href="{% url "register" %}"><span style="text-align: center; color: #f35525;"> Register</span></a>
           </div>
         </div>
+        <script>
+          function removeSpaces(inputElement) {
+            // Remove spaces from the input value
+            inputElement.value = inputElement.value.replace(/\s/g, "");
+          }
+        </script>
       </form>
     </div>
   </div>
