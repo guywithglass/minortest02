@@ -13,6 +13,10 @@ def sample(request):
     return render(request, 'sample.html')
 
 
+def sam(request):
+    return render(request, 'sam.html')
+
+
 def base(request):
     return render(request, 'base.html')
 
