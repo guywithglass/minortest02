@@ -6,6 +6,9 @@ from django.contrib import messages
 
 
 def index(request):
+    current_user = request.user
+    user_name = current_user.username
+    print(user_name)
     return render(request, 'index.html')
 
 
@@ -21,8 +24,8 @@ def base(request):
     return render(request, 'base.html')
 
 
-def contact(request):
-    return render(request, 'contact.html')
+# def contact(request):
+#     return render(request, 'contact.html')
 
 
 def about(request):
